@@ -1,6 +1,6 @@
 ---
-title: Nick Strayer's Resume"
-author: Nick Strayer
+title: Stephanie Deus's Resume"
+author: Stephanie Desus
 date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
@@ -11,10 +11,7 @@ output:
 
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(
-  results='asis', 
-  echo = FALSE
-)
+library(dplyr)
 library(tidyverse)
 library(glue)
 
@@ -29,16 +26,9 @@ source('parsing_functions.R')
 
 # First let's get the data, filtering to only the items tagged as
 # Resume items
-position_data <- read_csv('positions.csv') %>% 
-  filter(in_resume) %>% 
-  mutate(
-    # Build some custom sections by collapsing others
-    section = case_when(
-      section %in% c('research_positions', 'industry_positions') ~ 'positions', 
-      section %in% c('data_science_writings', 'by_me_press') ~ 'writings',
-      TRUE ~ section
-    )
-  ) 
+position_data1 <- read_csv('positions1.csv') %>% 
+  filter() %>% 
+  mutate
 
 ```
 
@@ -54,11 +44,11 @@ Contact {#contact}
 
 
 
-- <i class="fa fa-envelope"></i> nick.strayer@gmail.com
-- <i class="fa fa-twitter"></i> NicholasStrayer
-- <i class="fa fa-github"></i> github.com/nstrayer
-- <i class="fa fa-link"></i> [nickstrayer.me](http://nickstrayer.me/)
-- <i class="fa fa-phone"></i> (734) 645-0110
+- <i class="fa fa-envelope"></i> stephaniedeusvertus@gmail.com
+- <i class="fa fa-twitter"></i> StephanieDeus
+- <i class="fa fa-github"></i> github.com/StephanieDeus
+- <i class="fa fa-link"></i> [stephaniedeus.me](http:/stephaniedeus.me/)
+- <i class="fa fa-phone"></i> (786) 955-4792
 
 
 
@@ -70,12 +60,10 @@ Language Skills {#skills}
 skills <- tribble(
   ~skill,               ~level,
   "R",                  5,
-  "Javascript (d3.js)", 4.5,
   "Python",             4,
   "Bash",               3.5,
   "SQL",                3,
-  "C++",                3,
-  "AWK",                3
+  "Tableau",             3,
 )
 build_skill_bars(skills)
 ```
@@ -114,14 +102,13 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-Nick Strayer {#title}
+Stephanie Deus{#title}
 --------------------------------------------------------------------------------
 
 ```{r}
-intro_text <- "I have made [visualizations viewed by hundreds of thousands of people](https://www.nytimes.com/interactive/2016/08/26/us/college-student-migration.html), [sped up query times for 25 terabytes of data by an average of 4,800 times](https://livefreeordichotomize.com/2019/06/04/using_awk_and_r_to_parse_25tb/), and built [packages for R](https://github.com/nstrayer/shinysense) that let you [do magic](http://nickstrayer.me/dataDayTexas/).
+intro_text <- "Making me exceptionally well-suited for roles that require a strategic approach to information. With over 4 years of experience in education, I have honed the ability to dissect complex information, discern patterns, and drive decisions based on data-driven insights, skills crucial for optimizing program efficacy. My proficiency in organizing and managing data, coupled with a knack for leveraging spreadsheets and conducting thorough research, aligns perfectly with the demands of overseeing projects and development efforts. Moreover, my teaching tenure has instilled in me a meticulous eye for detail, the prowess to think critically, and adept problem-solving skills, all of which are indispensable in any role. I excel in clear communication, delivering insights, and seamless collaboration with diverse stakeholders, essential attributes for success in various professional settings. With a resolute analytical mindset, adaptability, and a commitment to continuous improvement, I am eager to contribute to the growth and success of any organization's initiatives."
 
-Currently searching for a data science position that allows me to build tools using visualization and machine learning to help people explore and understand their data. 
-"
+
 
 
 cat(sanitize_links(intro_text))
@@ -133,7 +120,7 @@ Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
-position_data %>% print_section('education')
+position_data1 %>% print_section('education')
 ```
 
 
@@ -144,13 +131,4 @@ Selected Positions {data-icon=suitcase}
 ```{r}
 position_data %>% print_section('positions')
 ```
-
-Selected Writing {data-icon=newspaper}
---------------------------------------------------------------------------------
-
-
-```{r}
-position_data %>% print_section('writings')
-```
-
 
